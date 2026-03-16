@@ -8,18 +8,29 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="container parent">
       <h2>Parent Component (App Component)</h2>
-      <p> Message to Child: <input type="text" [(ngModel)]="parentMessage"> </p>
-      <p>Message from Child: </p>
+      <!-- <p> Message to Child: <input type="text" [(ngModel)]="parentMessage"> </p> -->
+       <p> Message to Child: <input type="text" [(ngModel)]="parentMessage"> </p>
+       <p>Message from Child: {{parentMessage()}}</p>
+      <!-- <p>Message from Child: {{childMessage()}}</p> -->
       <div>
-        <app-child [message]="parentMessage()"/>
+       <app-child   [(value)] = "parentMessage"     />
+        <!-- <app-child 
+        [message]="parentMessage()"
+        (Clicked)="receivedMessage($event)"
+        /> -->
       </div>
     </div>
   `,
   styles: `.parent{background-color: pink; color: black}`
 })
 export class App {
-  parentMessage = signal<string>('');  
+  parentMessage = signal<string>(''); 
+  // parentMessage = signal<string>(''); 
+  // childMessage = signal<string>('');
 
+  // receivedMessage(msg:string){
+  //   this.childMessage.set(msg);
+  // } 
 }
 
 
